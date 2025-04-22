@@ -8,4 +8,5 @@ export interface PowerCycle {
 export interface Settings {
   notificationsEnabled: boolean;
   notificationLeadTime: number; // Minutes before event to notify
+  cycleStartDate: Date; // New field to store the cycle start date
 }

@@ -1,10 +1,15 @@
 
 import React from 'react';
+import { format } from 'date-fns';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
+import { Calendar } from '@/components/ui/calendar';
+import { Popover, PopoverContent, PopoverTrigger } from '@/components/ui/popover';
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from '@/components/ui/card';
 import { Settings as SettingsType } from '@/types/power';
+import { CalendarIcon } from 'lucide-react';
+import { cn } from '@/lib/utils';
 
 interface SettingsProps {
   settings: SettingsType;
@@ -15,11 +20,13 @@ interface SettingsProps {
 const Settings: React.FC<SettingsProps> = ({ settings, onSave, onReset }) => {
   const [notificationsEnabled, setNotificationsEnabled] = React.useState(settings.notificationsEnabled);
   const [notificationLeadTime, setNotificationLeadTime] = React.useState(settings.notificationLeadTime);
+  const [cycleStartDate, setCycleStartDate] = React.useState<Date>(settings.cycleStartDate);
 
   const handleSave = () => {
     onSave({
       notificationsEnabled,
-      notificationLeadTime
+      notificationLeadTime,
+      cycleStartDate
     });
   };
 
@@ -32,6 +39,36 @@ const Settings: React.FC<SettingsProps> = ({ settings, onSave, onReset }) => {
         </CardDescription>
       </CardHeader>
       <CardContent className="space-y-6">
+        <div>
+          <h3 className="text-lg font-medium mb-2">Power Cycle Start Date</h3>
+          <p className="text-sm text-gray-500 mb-4">
+            Set when your power cycle begins
+          </p>
+          <Popover>
+            <PopoverTrigger asChild>
+              <Button
+                variant="outline"
+                className={cn(
+                  "w-[240px] justify-start text-left font-normal",
+                  !cycleStartDate && "text-muted-foreground"
+                )}
+              >
+                <CalendarIcon className="mr-2 h-4 w-4" />
+                {cycleStartDate ? format(cycleStartDate, "PPP") : <span>Pick a date</span>}
+              </Button>
+            </PopoverTrigger>
+            <PopoverContent className="w-auto p-0" align="start">
+              <Calendar
+                mode="single"
+                selected={cycleStartDate}
+                onSelect={setCycleStartDate}
+                initialFocus
+                className={cn("p-3 pointer-events-auto")}
+              />
+            </PopoverContent>
+          </Popover>
+        </div>
+
         <div className="flex items-center justify-between">
           <div>
             <h3 className="text-lg font-medium">Notifications</h3>

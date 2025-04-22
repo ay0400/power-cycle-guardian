@@ -28,6 +28,9 @@ export default {
 					DEFAULT: 'hsl(var(--primary))',
 					foreground: 'hsl(var(--primary-foreground))'
 				},
+				'power-on': '#0EA5E9',
+				'power-off': '#1A1F2C',
+				'power-accent': '#8B5CF6',
 				secondary: {
 					DEFAULT: 'hsl(var(--secondary))',
 					foreground: 'hsl(var(--secondary-foreground))'

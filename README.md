@@ -1,8 +1,19 @@
-# Welcome to your Lovable project
+# Power Cycle Guardian
 
-## Project info
+An app to track your power system's 3-day cycle (2 days on, 1 day off).
+
+## Project Info
 
 **URL**: https://lovable.dev/projects/06bde0f0-369a-4cd3-8652-1aa5c4f1ffb6
+
+## Features
+
+- **Current Power Status**: Clearly indicates whether power is currently "on" or "off"
+- **Next Power Event**: Displays the date and time of the next power change
+- **Cycle Timeline**: Visual representation of your upcoming power cycles
+- **Countdown Timer**: Shows time remaining until the next power change
+- **Cycle Initialization**: Set up your power cycle with an easy wizard
+- **Notifications**: Get alerts before power changes (if enabled)
 
 ## How can I edit this code?
 

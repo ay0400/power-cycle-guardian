@@ -17,6 +17,7 @@ const Index = () => {
   const [settings, setSettings] = useState<SettingsType>({
     notificationsEnabled: true,
     notificationLeadTime: 30, // 30 minutes default
+    cycleStartDate: new Date(), // Initialize with current date
   });
   
   // Load saved data from local storage
@@ -55,6 +56,10 @@ const Index = () => {
   // Handle settings update
   const handleSaveSettings = (newSettings: SettingsType) => {
     setSettings(newSettings);
+    // If the cycle start date has changed, update the startDate state as well
+    if (newSettings.cycleStartDate !== settings.cycleStartDate) {
+      setStartDate(newSettings.cycleStartDate);
+    }
     toast({
       title: "Settings Saved",
       description: "Your settings have been updated successfully.",
